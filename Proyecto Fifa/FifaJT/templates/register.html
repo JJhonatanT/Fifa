@@ -1,0 +1,195 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registro - Escuela de Fútbol</title>
+
+    <!-- Agrega el enlace al CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-image: url('{% static "Imagenes/fondo_1.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .floating-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-images img {
+            position: absolute;
+            width: 40px;
+            height: auto;
+            animation: float 5s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .img1 { top: 20%; left: 10%; }
+        .img2 { top: 70%; left: 40%; }
+        .img3 { top: 40%; left: 70%; }
+        .img4 { top: 10%; left: 50%; }
+        .img5 { top: 80%; left: 20%; }
+        .img6 { top: 60%; left: 30%; }
+        .img7 { top: 15%; left: 80%; }
+        .img8 { top: 50%; left: 60%; }
+        .img9 { top: 25%; left: 90%; }
+        .img10 { top: 35%; left: 5%; }
+        .img11 { top: 75%; left: 75%; }
+        .img12 { top: 45%; left: 25%; }
+        .img13 { top: 5%; left: 15%; }
+        .img14 { top: 90%; left: 45%; }
+        .img15 { top: 55%; left: 85%; }
+
+        /* Estilos del formulario de registro */
+        .register-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            margin-top: 20px;
+        }
+
+        .register-container h2 {
+            margin-bottom: 20px;
+            font-family: 'Pacifico', cursive;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-login {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%; 
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            background-color: #2980b9;
+        }
+         
+        .btn-cancel {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%; 
+            margin-top: 10px;
+        }
+
+        .btn-cancel:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-images">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img1">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img2">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img3">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img4">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img5">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img6">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img7">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img8">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img9">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img10">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img11">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img12">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img13">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img14">
+        <img src="{% static 'Imagenes/balon.png' %}" class="img15">
+    </div>
+
+    <div class="login-container">
+        <!-- ... (Formulario de inicio de sesión existente) ... -->
+    </div>
+
+    <div class="register-container">
+        <h2>Registro</h2>
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="form-group">
+                <label for="nombre-usuario">Nombre de usuario:</label>
+                <input type="text" id="nombre-usuario" name="nombre-usuario" required>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo electrónico:</label>
+                <input type="email" id="correo" name="correo" required>
+            </div>
+            <div class="form-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmar-contrasena">Confirmar Contraseña:</label>
+                <input type="password" id="confirmar-contrasena" name="confirmar-contrasena" required>
+            </div>
+            <button type="submit" class="btn-login">Registrarse</button>
+            <a href="{% url 'index' %}" class="btn btn-cancel">Cancelar</a>
+        </form>
+    </div>
+
+    <!-- Agrega el enlace al JS de Bootstrap y a la librería jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
